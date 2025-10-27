@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DementiaReasoningApp – Patient Session</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body class="patient-view">
+    <main class="container">
+      <header>
+        <h1>DementiaReasoningApp – Patient Conversation</h1>
+        <p>
+          Speak freely with the cognitive assistant. Your clinician can follow along
+          through the live dashboard.
+        </p>
+      </header>
+
+      <section class="card conversation-card">
+        <div id="transcript" class="conversation-window" aria-live="polite"></div>
+        <div class="controls">
+          <button id="mic-toggle" class="contrast" type="button">
+            🎤 Start Speaking
+          </button>
+          <span id="status-indicator" role="status">Microphone idle</span>
+        </div>
+      </section>
+
+      <section class="card insights-card">
+        <h2>Assistant Insights</h2>
+        <p id="assistant-response" class="assistant-response">Ready when you are.</p>
+        <ul id="reasoning-chain" class="reasoning-chain"></ul>
+        <div class="score-display">
+          <span class="score-label">Reasoning Score</span>
+          <strong id="reasoning-score" class="score-value">–</strong>
+        </div>
+        <div id="metric-grid" class="metric-grid"></div>
+      </section>
+    </main>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/patient.js') }}" defer></script>
+  </body>
+</html>
