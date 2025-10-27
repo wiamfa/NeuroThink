@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DementiaReasoningApp – Clinician Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body class="clinician-view">
+    <main class="container">
+      <header>
+        <h1>Clinician Dashboard</h1>
+        <p>Monitor live reasoning scores and key insights from the session.</p>
+      </header>
+
+      <section class="card score-card">
+        <h2>Session Overview</h2>
+        <div class="score-summary">
+          <div>
+            <span class="score-label">Average Score</span>
+            <strong id="average-score" class="score-value">–</strong>
+          </div>
+          <div>
+            <span class="score-label">Latest Score</span>
+            <strong id="latest-score" class="score-value">–</strong>
+          </div>
+        </div>
+        <div id="average-metrics" class="metric-grid"></div>
+      </section>
+
+      <section class="card history-card">
+        <h2>Interaction History</h2>
+        <canvas id="score-chart" height="160"></canvas>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              <th scope="col">Transcript</th>
+              <th scope="col">Score</th>
+              <th scope="col">Insights</th>
+            </tr>
+          </thead>
+          <tbody id="history-table"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/clinician.js') }}" defer></script>
+  </body>
+</html>
